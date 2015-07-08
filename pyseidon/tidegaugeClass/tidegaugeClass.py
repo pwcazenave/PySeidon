@@ -5,7 +5,6 @@ from __future__ import division
 import numpy as np
 import scipy.io as sio
 import sys
-from utide import ut_solv, ut_reconstr
 
 #Add local path to utilities
 sys.path.append('../utilities/')

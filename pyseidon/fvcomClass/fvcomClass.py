@@ -5,7 +5,6 @@
 from __future__ import division
 import numpy as np
 import sys
-from utide import ut_solv, ut_reconstr
 #TR comment: 2 alternatives
 import netCDF4 as nc
 from scipy.io import netcdf

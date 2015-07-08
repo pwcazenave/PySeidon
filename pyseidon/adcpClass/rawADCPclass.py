@@ -2,7 +2,7 @@ from __future__ import division
 import numpy as np
 import sys
 sys.path.append('/home/wesley/github/UTide/')
-from utide import ut_solv, ut_reconstr
+from utide import solve, reconstruct
 #from shortest_element_path import shortest_element_path
 #import matplotlib.pyplot as plt
 #import matplotlib.tri as Tri
