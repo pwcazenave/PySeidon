@@ -1043,3 +1043,42 @@ class FunctionsFvcom:
         Reconstruct = reconstruct(time,harmo)
 
         return Reconstruct  
+
+    def connected_nodes(self, n):
+        """
+        Return the IDs of the nodes connected to node number `n'.
+
+        Inputs:
+          - n = Node ID around which to find the connected nodes.
+
+        Output:
+          - surroundingidx = Indices of the surrounding nodes.
+
+        *Notes*
+
+          Check it works with:
+          >>> import matplotlib.pyplot as plt
+          >>> import numpy as np
+          >>> from scipy.spatial import Delaunay
+          >>> x, y = np.meshgrid(np.arange(25), np.arange(100, 125))
+          >>> x = x.flatten() + np.random.randn(x.size) * 0.1
+          >>> y = y.flatten() + np.random.randn(y.size) * 0.1
+          >>> tri = Delaunay(np.array((x, y)).transpose())
+          >>> for n in np.linspace(1, len(x) - 1, 5).astype(int):
+          ...     aa = surrounders(n, tri.vertices)
+          ...     plt.figure()
+          ...     plt.triplot(x, y, tri.vertices, zorder=20, alpha=0.5)
+          ...     plt.plot(x[n], y[n], 'ro', label='central node')
+          ...     plt.plot(x[aa], y[aa], 'ko', label='connected nodes')
+          ...     plt.xlim(x[aa].min() - 1, x[aa].max() + 1)
+          ...     plt.ylim(y[aa].min() - 1, y[aa].max() + 1)
+          ...     plt.legend(numpoints=1)
+
+        """
+
+        eidx = np.max((np.abs(self._grid.trinodes - n) == 0), axis=1)
+        surroundingidx = np.unique(self._grid.trinodes[eidx][self._grid.trinodes[eidx] != n])
+
+        return surroundingidx
+
+
